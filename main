@@ -1,23 +1,22 @@
-{Version: 1.05
-Date: 2018.05.28
+{Version: 1.08
+Date: 2018.11.15
 -----------------
 
-* сделал на Word, потому что по сравнению с Cardinal и Integer, такая переменная занимает меньше памяти
+* Замена на Inc(i)
 }
-//поиск фрагмента текста в строке //ver.: 1.05
-Function Searchtextinstr(str,str2:String):Word;
-var i :Word;
+//поиск фрагмента текста в строке //ver.: 1.08
+Function Searchtextinstr(str,str2:String; startpos:Word):Word;
+var i:Word;
 begin
-Result:=0; i:=1;
+Result:=0; i:=startpos;
 while i<=Length(str) do begin
  if Copy(str,i,length(str2))=str2 then begin
   Result:=i; break;
  end;
- i:=i+1;
-end;
-
+ Inc(i);
+end;              
 end;
 //\поиск фрагмента текста в строке
 
 //использование
-if Searchtextinstr(Memo1.Lines.Strings[0] ,'M')<>0 Then begin // 0 - не найдено ничего, от 1 и больше - позиция на котором найден текст 
+if Searchtextinstr(Memo1.Lines.Strings[0] ,'M',1)<>0 Then begin // 0 - не найдено ничего, от 1 и больше - позиция на котором найден текст. startpos минимум равен 1 
